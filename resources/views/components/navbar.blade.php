@@ -24,7 +24,7 @@
                     {{ $locale }}
                 </a>
             @else
-            <a href="{{ route('locale.change', ['locale' => $locale]) }}"
+                <a href="{{ route('locale.change', ['locale' => $locale]) }}"
                     class="btn btn-primary mr-3 d-none d-lg-block">
                     {{ $locale }}
                 </a>

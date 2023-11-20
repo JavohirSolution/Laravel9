@@ -20,9 +20,6 @@ class NotificationController extends Controller
         return view('notification.index')->with([
             'notifications' => auth()->user()->notifications()->paginate(10),
         ]);
-        return view('layouts.app')->with([
-            'notifications' => auth()->user()->notifications(),
-        ]);
     }
 
     /**

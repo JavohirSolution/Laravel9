@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,13 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
         $this->call([
+            RoleSeeder::class,
             UserSeeder::class,
+            TagSeeder::class,
             CategorySeeder::class,
             PostSeeder::class,
-            TagSeeder::class,
-            PostSeeder::class
         ]);
     }
 }

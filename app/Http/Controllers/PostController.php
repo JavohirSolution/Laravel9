@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Collection;
 use App\Events\PostCreated;
 use App\Http\Requests\StorePostRequest;
 use App\Jobs\BigUploadFile;
@@ -24,6 +25,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Arr;
+
 
 class PostController extends Controller
 {
@@ -36,39 +39,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
-        // $users = Post::all()->filter(function ($post) {
-        //     return $post->id > 60;
-        // });
-
-        // $text = "";
-        // foreach($users as $post){
-        //     $text .= $post->id;
-        // }
-        // return $users;
+        // $user = User::first();
+        // dd(Auth::user());
         $posts = Post::latest()->paginate(15);
-
         return view('posts.index')->with('posts', $posts);
-
-
-        // Post::create([
-        //     'title' => "javohir",
-        //     'short_content' => "2",
-        //     'content' => '3',
-        //     'photo' =>"4"
-        // ]);
-
-        // $post = Post::where('title',1)->max('id');
-        // $post = Post::find(1);
-        // $post->title = "Javohir";
-        // dd($post->getOriginal('title'));
-        // Post::truncate();
-        // $post = Post::destroy(7);
-        // $post = DB::table('posts')->latest()->get();
-        // dd($post);
-        // return 'suucess';
-        // dd($request);
     }
 
     /**

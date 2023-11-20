@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\APIcontroller as ControllersAPIcontroller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
+use Spatie\FlareClient\Api;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,18 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+// Route::get('posts', [ControllersAPIcontroller::class, 'index']);
+// Route::get('posts/{post}', [ControllersAPIcontroller::class, 'show']);
 
-Route::get('posts', function () {
-    // $posts = Cache::forget('posts');
-    // Cache::flush('posts');
-    $posts = Post::all();
-    $allPost = "";
-    foreach ($posts as $post) {
-        $allPost .= $post->title;
-    }
-    Cache::put('title',$allPost);
-    // $posts = Cache::remember('posts', now()->addSeconds(30), function () {
-    //     return Post::latest()->get();
-    // });
-    return Cache::get('title');
-});
+Route::apiResource('posts', ControllersAPIcontroller::class);
